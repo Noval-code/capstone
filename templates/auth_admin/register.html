@@ -1,0 +1,108 @@
+{% extends "base.html" %} {% block content %}
+<main class="page-center">
+  <div class="min-h-screen flex items-center justify-center py-6 px-4">
+    <!-- Container -->
+    <div class="grid md:grid-cols-2 items-center gap-8 max-w-6xl w-full">
+      <!-- Login Form -->
+      <div class="border border-gray-300 rounded-lg p-6 shadow-lg max-w-md w-full mx-auto">
+        <form class="space-y-6" method="POST" action="{{ url_for('auth_admin.register') }}">
+          <!-- Title -->
+          <div>
+            <h3 class="text-gray-800 text-3xl font-extrabold">Register</h3>
+            <p class="text-gray-500 text-sm mt-2">Sign in to your account and explore a world of possibilities. Your journey begins here.</p>
+          </div>
+
+          <!-- Username Input -->
+          <div>
+            <label for="username" class="text-gray-800 text-sm mb-2 block">Username</label>
+            <div class="relative">
+              <input id="username" name="username" type="text" required class="w-full text-sm text-gray-800 border border-gray-300 px-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600" placeholder="Masukkan username" />
+              <svg xmlns="http://www.w3.org/2000/svg" class="absolute right-4 top-3.5 w-5 h-5 text-gray-400" fill="currentColor" viewBox="0 0 24 24">
+                <circle cx="10" cy="7" r="6"></circle>
+                <path d="M14 15H6a5 5 0 0 0-5 5 3 3 0 0 0 3 3h12a3 3 0 0 0 3-3 5 5 0 0 0-5-5z"></path>
+              </svg>
+            </div>
+          </div>
+
+          <!-- Password Input -->
+          <div>
+            <label for="password" class="text-gray-800 text-sm mb-2 block">Password</label>
+            <div class="relative">
+              <input
+                id="password"
+                name="password"
+                type="password"
+                required
+                class="w-full text-sm text-gray-800 border border-gray-300 px-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
+                placeholder="Enter your password"
+              />
+              <!-- Visibility Toggle Icon -->
+              <button type="button" id="toggle-password" class="absolute right-4 top-3.5 text-gray-400 hover:text-gray-600 focus:outline-none" aria-label="Toggle Password Visibility">
+                <!-- Default icon -->
+                <svg id="eye-icon" xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-.07.224-.145.445-.229.662" />
+                </svg>
+                <!-- Hidden icon -->
+                <svg id="eye-slash-icon" xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.542-7A9.926 9.926 0 017 9.3m9.278-2.528c1.636 1.643 2.647 3.822 2.82 6.004M5.167 5.167a9.944 9.944 0 014.568-2.168m5.131 4.564L12 12m0 0L9.64 9.64M12 12l2.36 2.36M12 12l2.36-2.36M12 12L9.64 14.36"
+                  />
+                </svg>
+              </button>
+            </div>
+          </div>
+          <!-- Confirm Password Input -->
+          <div>
+            <label for="password" class="text-gray-800 text-sm mb-2 block">Konfirmasi Password</label>
+            <div class="relative">
+              <input
+                id="confirmPassword"
+                name="confirmPassword"
+                type="password"
+                required
+                class="w-full text-sm text-gray-800 border border-gray-300 px-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
+                placeholder="Masukkan Konfirmasi Password"
+              />
+              <!-- Visibility Toggle Icon -->
+              <button type="button" id="toggle-password" class="absolute right-4 top-3.5 text-gray-400 hover:text-gray-600 focus:outline-none" aria-label="Toggle Password Visibility">
+                <!-- Default icon -->
+                <svg id="eye-icon" xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-.07.224-.145.445-.229.662" />
+                </svg>
+                <!-- Hidden icon -->
+                <svg id="eye-slash-icon" xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.542-7A9.926 9.926 0 017 9.3m9.278-2.528c1.636 1.643 2.647 3.822 2.82 6.004M5.167 5.167a9.944 9.944 0 014.568-2.168m5.131 4.564L12 12m0 0L9.64 9.64M12 12l2.36 2.36M12 12l2.36-2.36M12 12L9.64 14.36"
+                  />
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          <!-- Register Button -->
+          <button type="submit" class="w-full py-3 px-4 bg-blue-600 text-white rounded-lg shadow-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-600">Register</button>
+
+          <!-- Register Link -->
+          <p class="text-sm text-center text-gray-800">
+            Sudah punya akun?
+            <a href="{{ url_for('auth_admin.login') }}" class="text-blue-600 hover:underline">Masuk disini</a>
+          </p>
+        </form>
+      </div>
+
+      <!-- Image -->
+      <div class="hidden md:block lg:h-96 h-72">
+        <img src="{{ url_for('static', filename='img/travel-register.png') }}" alt="Login Illustration" class="w-full h-auto object-cover rounded-lg" />
+      </div>
+    </div>
+  </div>
+</main>
+{% endblock %}
