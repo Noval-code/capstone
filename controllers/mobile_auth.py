@@ -9,7 +9,7 @@ from datetime import datetime, timedelta
 import random
 import logging
 
-class AuthController:
+class MobileAuth:
     @staticmethod
 
     def home():
