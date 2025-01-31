@@ -1,98 +1,78 @@
 {% extends "base.html" %} {% block content %}
-<main class="page-center">
-  {% with messages = get_flashed_messages(with_categories=true) %} {% if messages %}
-  <div class="fixed top-5 right-5 max-w-sm w-full z-50 space-y-4">
-    {% for category, message in messages %}
-    <div
-      class="px-4 py-3 rounded-lg shadow-lg {% if category == 'success' %} bg-green-100 text-green-700 border-l-4 border-green-500 {% elif category == 'danger' %} bg-red-100 text-red-700 border-l-4 border-red-500 {% elif category == 'warning' %} bg-yellow-100 text-yellow-700 border-l-4 border-yellow-500 {% elif category == 'info' %} bg-blue-100 text-blue-700 border-l-4 border-blue-500 {% else %} bg-gray-100 text-gray-700 border-l-4 border-gray-500 {% endif %}"
-    >
-      <div class="flex items-center">
-        <div class="flex-1 text-sm font-medium">{{ message }}</div>
-        <button class="ml-4 text-gray-500 hover:text-gray-700" onclick="this.parentElement.parentElement.remove()">&times;</button>
-      </div>
+<div class="relative mt-12 w-full max-w-lg sm:mt-10">
+  <div class="relative -mb-px h-px w-full bg-gradient-to-r from-transparent via-sky-300 to-transparent" bis_skin_checked="1"></div>
+  <div
+    class="mx-5 border dark:border-b-white/50 dark:border-t-white/50 border-b-white/20 sm:border-t-white/20 shadow-[20px_0_20px_20px] shadow-slate-500/10 dark:shadow-white/20 rounded-lg border-white/20 border-l-white/20 border-r-white/20 sm:shadow-sm lg:rounded-xl lg:shadow-none"
+  >
+    <div class="flex flex-col p-6">
+      <h3 class="text-xl font-semibold leading-6 tracking-tighter">Login</h3>
+      <p class="mt-1.5 text-sm font-medium text-white/50">Welcome back, enter your credentials to continue.</p>
     </div>
-    {% endfor %}
-  </div>
-  {% endif %} {% endwith %}
-
-  <div class="min-h-screen flex items-center justify-center py-6 px-4">
-    <!-- Container -->
-    <div class="grid md:grid-cols-2 items-center gap-8 max-w-6xl w-full">
-      <!-- Login Form -->
-      <div class="border border-gray-300 rounded-lg p-6 shadow-lg max-w-md w-full mx-auto">
-        <form class="space-y-6" method="POST" action="{{ url_for('auth_admin.login') }}">
-          <!-- Title -->
+    <div class="p-6 pt-0">
+      <form>
+        <div>
           <div>
-            <h3 class="text-gray-800 text-3xl font-extrabold">Login</h3>
-            <p class="text-gray-500 text-sm mt-2">Sign in to your account and explore a world of possibilities. Your journey begins here.</p>
-          </div>
-
-          <!-- Username Input -->
-          <div>
-            <label for="username" class="text-gray-800 text-sm mb-2 block">Username</label>
-            <div class="relative">
-              <input id="username" name="username" type="text" required class="w-full text-sm text-gray-800 border border-gray-300 px-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600" placeholder="Masukkan username" />
-              <svg xmlns="http://www.w3.org/2000/svg" class="absolute right-4 top-3.5 w-5 h-5 text-gray-400" fill="currentColor" viewBox="0 0 24 24">
-                <circle cx="10" cy="7" r="6"></circle>
-                <path d="M14 15H6a5 5 0 0 0-5 5 3 3 0 0 0 3 3h12a3 3 0 0 0 3-3 5 5 0 0 0-5-5z"></path>
-              </svg>
-            </div>
-          </div>
-
-          <!-- Password Input -->
-          <!-- Password Input -->
-          <div>
-            <label for="password" class="text-gray-800 text-sm mb-2 block">Password</label>
-            <div class="relative">
+            <div class="group relative rounded-lg border focus-within:border-sky-200 px-3 pb-1.5 pt-2.5 duration-200 focus-within:ring focus-within:ring-sky-300/30">
+              <div class="flex justify-between">
+                <label class="text-xs font-medium text-muted-foreground group-focus-within:text-white text-gray-400">Username</label>
+                <div class="absolute right-3 translate-y-2 text-green-200">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
+                    <path
+                      fill-rule="evenodd"
+                      d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12Zm13.36-1.814a.75.75 0 1 0-1.22-.872l-3.236 4.53L9.53 12.22a.75.75 0 0 0-1.06 1.06l2.25 2.25a.75.75 0 0 0 1.14-.094l3.75-5.25Z"
+                      clip-rule="evenodd"
+                    />
+                  </svg>
+                </div>
+              </div>
               <input
-                id="password"
-                name="password"
-                type="password"
-                required
-                class="w-full text-sm text-gray-800 border border-gray-300 px-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
-                placeholder="Enter your password"
+                type="text"
+                name="username"
+                placeholder="Username"
+                autocomplete="off"
+                class="block w-full border-0 bg-transparent p-0 text-sm file:my-1 file:rounded-full file:border-0 file:bg-accent file:px-4 file:py-2 file:font-medium placeholder:text-muted-foreground/90 focus:outline-none focus:ring-0 sm:leading-7 text-foreground"
               />
-              <!-- Visibility Toggle Icon -->
-              <button type="button" id="toggle-password" class="absolute right-4 top-3.5 text-gray-400 hover:text-gray-600 focus:outline-none" aria-label="Toggle Password Visibility">
-                <!-- Default icon -->
-                <svg id="eye-icon" xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-.07.224-.145.445-.229.662" />
-                </svg>
-                <!-- Hidden icon -->
-                <svg id="eye-slash-icon" xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.542-7A9.926 9.926 0 017 9.3m9.278-2.528c1.636 1.643 2.647 3.822 2.82 6.004M5.167 5.167a9.944 9.944 0 014.568-2.168m5.131 4.564L12 12m0 0L9.64 9.64M12 12l2.36 2.36M12 12l2.36-2.36M12 12L9.64 14.36"
-                  />
-                </svg>
-              </button>
             </div>
           </div>
-
-          <!-- Remember Me and Forgot Password -->
-          <div class="flex items-center justify-between">
-            <a href="{{ url_for('auth_admin.forgot_password') }}" class="text-sm text-blue-600 hover:underline">Lupa password?</a>
+        </div>
+        <div class="mt-4">
+          <div>
+            <div class="group relative rounded-lg border focus-within:border-sky-200 px-3 pb-1.5 pt-2.5 duration-200 focus-within:ring focus-within:ring-sky-300/30">
+              <div class="flex justify-between">
+                <label class="text-xs font-medium text-muted-foreground group-focus-within:text-white text-gray-400">Password</label>
+              </div>
+              <div class="flex items-center">
+                <input
+                  type="password"
+                  name="password"
+                  class="block w-full border-0 bg-transparent p-0 text-sm file:my-1 placeholder:text-muted-foreground/90 focus:outline-none focus:ring-0 focus:ring-teal-500 sm:leading-7 text-foreground"
+                />
+              </div>
+            </div>
           </div>
-
-          <!-- Login Button -->
-          <button type="submit" class="w-full py-3 px-4 bg-blue-600 text-white rounded-lg shadow-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-600">Login</button>
-
-          <!-- Register Link -->
-          <p class="text-sm text-center text-gray-800">
-            Belum punya akun?
-            <a href="{{ url_for('auth_admin.register') }}" class="text-blue-600 hover:underline">Daftar disini</a>
-          </p>
-        </form>
-      </div>
-
-      <!-- Image -->
-      <div class="hidden md:block lg:h-96 h-72 mb-20">
-        <img src="{{ url_for('static', filename='img/travel-login.png') }}" alt="Login Illustration" class="w-90 h-auto object-cover rounded-lg" />
-      </div>
+        </div>
+        <div class="mt-4 flex items-center justify-between">
+          <label class="flex items-center gap-2">
+            <input type="checkbox" name="remember" class="outline-none focus:outline focus:outline-sky-300" />
+            <span class="text-xs">Remember me</span>
+          </label>
+          <a class="text-sm font-medium text-foreground underline" href="/forgot-password">Forgot password?</a>
+        </div>
+        <div class="mt-4 flex items-center justify-end gap-x-2">
+          <a
+            class="inline-flex items-center justify-center rounded-md text-sm font-medium transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-accent hover:ring hover:ring-white h-10 px-4 py-2 duration-200"
+            href="/register"
+            >Register</a
+          >
+          <button
+            class="font-semibold hover:bg-black hover:text-white hover:ring hover:ring-white transition duration-300 inline-flex items-center justify-center rounded-md text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-white text-black h-10 px-4 py-2"
+            type="submit"
+          >
+            Log in
+          </button>
+        </div>
+      </form>
     </div>
   </div>
-</main>
+</div>
 {% endblock %}
