@@ -1,7 +1,7 @@
 from config import Config
 from flask import Flask, render_template, redirect, url_for
 from database import db
-from routes.mobile_auth_routes import mobile_auth
+from controllers.mobile_auth import mobile_auth
 from controllers.web_auth import web_auth
 from flask_mail import Mail
 from flask_jwt_extended import JWTManager, jwt_required, get_jwt

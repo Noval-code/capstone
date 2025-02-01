@@ -14,10 +14,13 @@ def login():
         username = request.form.get("username")
         password = request.form.get("password")
 
+        if not username or not password:
+            flash("username dan password wajib diisi!", "danger")
+
         user = User.query.filter_by(username=username).first()
         if user and user.check_password(password):
             if not user.is_verified:
-                flash("Akun belum diverifikasi. Silakan cek email Anda.", "warning")
+                flash("Akun belum diverifikasi. Silakan cek email Anda.", "danger")
                 return redirect(url_for("web_auth.verify"))
 
             login_user(user)

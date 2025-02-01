@@ -1,4 +1,17 @@
-{% extends "base.html" %} {% block content %}
+{% extends "base.html" %} {% block content %} {% with messages = get_flashed_messages(with_categories=true) %} {% if messages %}
+<div class="fixed top-5 right-5 max-w-sm w-full z-50 space-y-4">
+  {% for category, message in messages %}
+  <div
+    class="px-4 py-3 rounded-lg shadow-lg {% if category == 'success' %} bg-green-100 text-green-700 border-l-4 border-green-500 {% elif category == 'danger' %} bg-red-100 text-red-700 border-l-4 border-red-500 {% elif category == 'warning' %} bg-yellow-100 text-yellow-700 border-l-4 border-yellow-500 {% elif category == 'info' %} bg-blue-100 text-blue-700 border-l-4 border-blue-500 {% else %} bg-gray-100 text-gray-700 border-l-4 border-gray-500 {% endif %}"
+  >
+    <div class="flex items-center">
+      <div class="flex-1 text-sm font-medium">{{ message }}</div>
+      <button class="ml-4 text-gray-500 hover:text-gray-700" onclick="this.parentElement.parentElement.remove()">&times;</button>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+{% endif %} {% endwith %}
 <div class="relative mt-12 w-full max-w-lg sm:mt-10">
   <div class="relative -mb-px h-px w-full bg-gradient-to-r from-transparent via-sky-300 to-transparent" bis_skin_checked="1"></div>
   <div
@@ -9,7 +22,7 @@
       <p class="mt-1.5 text-sm font-medium text-white/50">Welcome back, enter your credentials to continue.</p>
     </div>
     <div class="p-6 pt-0">
-      <form>
+      <form method="POST" action="{{url_for('web_auth.login')}}">
         <div>
           <div>
             <div class="group relative rounded-lg border focus-within:border-sky-200 px-3 pb-1.5 pt-2.5 duration-200 focus-within:ring focus-within:ring-sky-300/30">
